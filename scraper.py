@@ -31,6 +31,3 @@ def scrape_shoe_data(num_shoes):
                 price += ', but add to cart to see reduced price'
             count += 1
             print(f"{count}: The {title} costs {price}.\n")
-
-
-scrape_shoe_data(400)
