@@ -1,11 +1,13 @@
 from bs4 import BeautifulSoup
 import requests
 
-def scrape_shoe_data(num_shoes):
+def scrape_kohls_shoe_data(num_shoes):
     count = 0
 
     while count < num_shoes:
-        html_text = requests.get(f'https://www.kohls.com/catalog/mens-shoes.jsp?CN=Gender:Mens+Department:Shoes&cc=mens-TN2.0-S-shoes&kls_sbp=56751120711696885714221506018546775523&PPP=48&WS={count}&S=1&sks=true').text
+        html_text = requests.get(f'https://www.kohls.com/catalog/mens-shoes.jsp?CN' + 
+            f'=Gender:Mens+Department:Shoes&cc=mens-TN2.0-S-shoes&kls_sbp=56751' + 
+            f'120711696885714221506018546775523&PPP=48&WS={count}&S=1&sks=true').text
         soup = BeautifulSoup(html_text, 'lxml')
 
         shoes = soup.find_all('li', class_='products_grid')
@@ -36,7 +38,7 @@ def scrape_shoe_data(num_shoes):
                 price += ', but add to cart to see reduced price'
                 
             count += 1
-            
+
             print(f"{count}: The {title} costs {price}.\n")
 
-scrape_shoe_data(4000)
+scrape_kohls_shoe_data(4000)
